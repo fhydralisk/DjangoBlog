@@ -24,6 +24,7 @@ from oauth.admin import *
 from servermanager.admin import *
 from comments.admin import *
 from owntracks.admin import *
+from milhous_status.admin import *
 
 
 class DjangoBlogAdminSite(AdminSite):
@@ -71,3 +72,5 @@ admin_site.register(OwnTrackLog, OwnTrackLogsAdmin)
 admin_site.register(Site, SiteAdmin)
 
 admin_site.register(LogEntry, LogEntryAdmin)
+
+admin_site.register([MilhousCharacter, MilhousHost, HostMachineType])

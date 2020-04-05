@@ -58,7 +58,10 @@ INSTALLED_APPS = [
     'oauth',
     'servermanager',
     'owntracks',
-    'compressor'
+    'compressor',
+    'rest_framework',
+    'base',
+    'milhous_status',
 ]
 
 MIDDLEWARE = [
@@ -289,3 +292,11 @@ COMPRESS_JS_FILTERS = [
 MEDIA_ROOT = os.path.join(SITE_ROOT, 'uploads')
 MEDIA_URL = '/media/'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+COUNT_PER_PAGE = 10
+
+REDIS_SERVER = {
+    'host': 'localhost',
+    'port': 6379,
+    'socket_timeout': 1,
+}
