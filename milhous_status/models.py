@@ -46,7 +46,7 @@ class MilhousHost(models.Model):
                 return False
 
             t = isoparse(tf)
-            return (datetime.datetime.now() - t).total_seconds() > 2 * self.update_interval
+            return (datetime.datetime.now() - t).total_seconds() < 2 * self.update_interval
         except:
             logging.exception("Faild to read heartbeat information")
             return False
