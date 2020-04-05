@@ -50,7 +50,7 @@ class MilhousHostTypeSerializer(serializers.ModelSerializer):
 class MilhousHostSerializer(serializers.ModelSerializer):
 
     host_type = MilhousHostTypeSerializer()
-    characters = MilhousHostTypeSerializer(many=True)
+    characters = MilhousCharacterSerializer(many=True)
 
     class Meta:
         model = MilhousHost
