@@ -65,7 +65,6 @@ class SMSManager(object):
         self._sms = {
             usage: self.sms_clz(
                 usage=usage,
-                exclude=settings.BBRECYCLE_CTX.get('exclude_sms', None)
             ) for usage in sms_choice.get_choices()
         }
 
