@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'django_celery_beat',
     'mdeditor',
     'haystack',
     'blog',
@@ -300,3 +301,13 @@ REDIS_SERVER = {
     'port': 6379,
     'socket_timeout': 1,
 }
+
+# CELERY
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_IGNORE_RESULT = True
+CELERY_ENABLE_UTC = False
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+SMS = "base.util.sms.ali_sms.AliSMS"
