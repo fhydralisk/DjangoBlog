@@ -18,6 +18,7 @@ from django.contrib.sites.admin import SiteAdmin
 from django.contrib.admin.models import LogEntry
 from django.contrib.sites.models import Site
 from DjangoBlog.logentryadmin import LogEntryAdmin
+from base.models import AliSmsAPIMasterKey
 from blog.admin import *
 from accounts.admin import *
 from oauth.admin import *
@@ -74,3 +75,5 @@ admin_site.register(Site, SiteAdmin)
 admin_site.register(LogEntry, LogEntryAdmin)
 
 admin_site.register([MilhousCharacter, MilhousHost, HostMachineType])
+
+admin_site.register([AliSmsAPIMasterKey])

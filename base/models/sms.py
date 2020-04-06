@@ -11,5 +11,5 @@ class AliSmsAPIMasterKey(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
     usage = models.IntegerField(choices=sms_choice.choice)
 
-    def __unicode__(self):
+    def __str__(self):
         return sms_choice.get_verbose_name(self.usage)
