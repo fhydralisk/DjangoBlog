@@ -20,7 +20,7 @@ def report_host_state():
     logger.debug("Beat for host state detect")
     for host in MilhousHost.objects.all():
         k = host.redis_hb_key + '_isalive'
-        is_alive_before = r.get(k) or 0
+        is_alive_before = int(r.get(k)) or 0
         is_alive_now = 1 if host.is_alive else 0
         if is_alive_before ^ is_alive_now:
             logger.info('Host %s state change from %d to %d' % (host.name, is_alive_before, is_alive_now))
