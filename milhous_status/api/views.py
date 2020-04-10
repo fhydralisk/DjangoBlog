@@ -25,3 +25,9 @@ class MilhousHostStatisticsReportView(WLAPIGenericView):
     http_method_names = ['post', 'options']
     API_SERIALIZER = serializers.MilhousHostStateUploadApiSerializer
     FUNC_CLASS = funcs.MilhousHostStateReportFunc
+
+
+class MilhousCharacterPingView(WLAPIGenericView):
+    http_method_names = ['get', 'options']
+    API_SERIALIZER = serializers.MilhousCharacterPingApiSerializer
+    FUNC_CLASS = funcs.MilhousCharacterPingFunc

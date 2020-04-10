@@ -18,6 +18,10 @@ class MilhousHostStateUploadApiSerializer(HostRelatedApiSerializer, MilhousHostS
     pass
 
 
+class MilhousCharacterPingApiSerializer(serializers.ApiSerializer):
+    character = serializers.SlugRelatedField(queryset=MilhousCharacter.objects.all(), slug_field='character')
+
+
 class MilhousHostStatisticsApiSerializer(HostRelatedApiSerializer):
     pass
 
@@ -34,6 +38,7 @@ class MilhousCharacterSerializer(serializers.ModelSerializer):
             'character',
             'expire',
             'photo',
+            'is_alive',
         )
 
 

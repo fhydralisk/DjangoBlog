@@ -106,7 +106,7 @@ def model_post_save_callback(sender, instance, created, raw, using, update_field
         delete_sidebar_cache(instance.author.username)
         delete_view_cache('article_comments', [str(instance.article.pk)])
 
-        _thread.start_new(send_comment_email, (instance,))
+        # _thread.start_new(send_comment_email, (instance,))
 
     if clearcache:
         cache.clear()

@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^host/state/$', views.MilhousHostStatisticsReportView.as_view(), name='host_state'),
     url(r'^host/state/list/$', views.MilhousHostStatisticsListView.as_view(), name='host_state_list'),
     url(r'^host/list/$', views.MilhousHostListView.as_view(), name='host_list'),
+    url(r'^character/ping/$', views.MilhousCharacterPingView.as_view(), name='character_ping'),
 ]

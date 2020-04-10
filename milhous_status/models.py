@@ -9,26 +9,11 @@ from base.util import redis
 # Create your models here.
 
 
-class HostMachineType(models.Model):
-    name = models.CharField(max_length=255, null=False, blank=False, verbose_name="名称")
-    icon = models.ImageField(verbose_name="图标")
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "服务器类型"
-
-
-class MilhousHost(models.Model):
-    name = models.CharField(max_length=255, null=False, blank=False, verbose_name="主机名称")
-    host_desc = models.TextField(verbose_name="主机配置描述")
-    host_type = models.ForeignKey(to=HostMachineType, on_delete=models.CASCADE, verbose_name="主机类型")
-    update_interval = models.IntegerField(default=10, verbose_name="上报间隔")
+class HeartbeatMixin(object):
 
     @property
     def redis_hb_key(self):
-        return 'host_update_' + self.name
+        raise NotImplementedError
 
     def heartbeat(self):
         try:
@@ -51,6 +36,28 @@ class MilhousHost(models.Model):
             logging.exception("Faild to read heartbeat information")
             return False
 
+
+class HostMachineType(models.Model):
+    name = models.CharField(max_length=255, null=False, blank=False, verbose_name="名称")
+    icon = models.ImageField(verbose_name="图标")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "服务器类型"
+
+
+class MilhousHost(models.Model, HeartbeatMixin):
+    name = models.CharField(max_length=255, null=False, blank=False, verbose_name="主机名称")
+    host_desc = models.TextField(verbose_name="主机配置描述")
+    host_type = models.ForeignKey(to=HostMachineType, on_delete=models.CASCADE, verbose_name="主机类型")
+    update_interval = models.IntegerField(default=10, verbose_name="上报间隔")
+
+    @property
+    def redis_hb_key(self):
+        return 'host_update_' + self.name
+
     def __str__(self):
         return self.name
 
@@ -58,7 +65,7 @@ class MilhousHost(models.Model):
         verbose_name = "服务器"
 
 
-class MilhousCharacter(models.Model):
+class MilhousCharacter(models.Model, HeartbeatMixin):
     character = models.CharField(max_length=32, null=False, blank=False, verbose_name="角色名称")
     host = models.ForeignKey(
         to=MilhousHost,
@@ -70,6 +77,11 @@ class MilhousCharacter(models.Model):
     )
     expire = models.DateTimeField(verbose_name="过期时间")
     photo = models.ImageField(null=True, blank=True, verbose_name="照片")
+    update_interval = models.IntegerField(default=120, verbose_name="上报间隔")
+
+    @property
+    def redis_hb_key(self):
+        return self.character + '_alive_hb'
 
     def __str__(self):
         return self.character
