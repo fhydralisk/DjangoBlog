@@ -107,23 +107,9 @@ def block_code(text, lang, inlinestyles=False, linenos=False):
     :param linenos:
     :return:
     '''
-    if not lang:
-        text = text.strip()
-        return u'<pre><code>%s</code></pre>\n' % mistune.escape(text)
-
-    try:
-        lexer = get_lexer_by_name(lang, stripall=True)
-        formatter = html.HtmlFormatter(
-            noclasses=inlinestyles, linenos=linenos
-        )
-        code = highlight(text, lexer, formatter)
-        if linenos:
-            return '<div class="highlight">%s</div>\n' % code
-        return code
-    except:
-        return '<pre class="%s"><code>%s</code></pre>\n' % (
-            lang, mistune.escape(text)
-        )
+    text = text.strip()
+    block = u'<pre><code class="%s">%%s</code></pre>\n' % lang if lang else u'<pre><code>%s</code></pre>\n'
+    return block % mistune.escape(text)
 
 
 @cache_decorator()
@@ -169,7 +155,7 @@ class BlogMarkDownRenderer(mistune.Renderer):
 class CommonMarkdown():
     @staticmethod
     def get_markdown(value):
-        renderer = BlogMarkDownRenderer(inlinestyles=False)
+        renderer = BlogMarkDownRenderer(inlinestyles=False, linenos=True)
 
         mdp = mistune.Markdown(escape=True, renderer=renderer)
         return mdp(value)
