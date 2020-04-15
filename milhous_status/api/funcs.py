@@ -16,7 +16,7 @@ class MilhousHostStateReportFunc(AbstractFuncClass):
 class MilhousHostListFunc(PagedAbstractFuncClass):
 
     def get_paged_qs(self, **kwargs):
-        return MilhousHost.objects.all(), "hosts", {}
+        return MilhousHost.objects.all().order_by('-id'), "hosts", {}
 
 
 class MilhousHostStatisticsListFunc(PagedAbstractFuncClass):
