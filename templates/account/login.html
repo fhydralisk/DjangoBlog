@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
 
-        <h2 class="form-signin-heading text-center">Sign in with your Account</h2>
+        <h2 class="form-signin-heading text-center">登录米豪的博客</h2>
 
         <div class="card card-signin">
             <img class="img-circle profile-img" src="{% static 'blog/img/avatar.png' %}" alt="">
@@ -20,12 +20,12 @@
                 {% endfor %}
 
                 <input type="hidden" name="next" value="{{ redirect_to }}">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
 
                 <div class="checkbox">
                     {% comment %}<a class="pull-right">Need help?</a>{% endcomment %}
                     <label>
-                        <input type="checkbox" value="remember-me"> Stay signed in
+                        <input type="checkbox" value="remember-me"> 保持登录
                     </label>
                 </div>
                 {% load oauth_tags %}
@@ -34,9 +34,9 @@
         </div>
 
         <p class="text-center">
-            <a href="{% url "account:register" %}">Create Account</a>
+            <a href="{% url "account:register" %}">注册</a>
             |
-            <a href="/">Home Page</a>
+            <a href="/">返回主页</a>
         </p>
 
     </div> <!-- /container -->
