@@ -22,7 +22,7 @@ class MilhousHostListFunc(PagedAbstractFuncClass):
 class MilhousHostStatisticsListFunc(PagedAbstractFuncClass):
 
     def get_paged_qs(self, host, **kwargs):
-        return MilhousHostStatistics.objects.filter(host=host).order_by('-report_date'), "statistics", {}
+        return MilhousHostStatistics.objects.filter(host=host).order_by('-id'), "statistics", {}
 
 
 class MilhousCharacterPingFunc(AbstractFuncClass):
