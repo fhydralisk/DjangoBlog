@@ -45,6 +45,7 @@ class GuildMaterialsJournal(models.Model):
         verbose_name="输出物资",
         on_delete=models.CASCADE,
         null=True,
+        blank=True,
     )
     amount_output = models.DecimalField(
         verbose_name="输出数量",
