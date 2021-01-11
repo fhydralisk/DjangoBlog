@@ -8,7 +8,7 @@ class GuildMaterialsStock(models.Model):
     stock = models.DecimalField(verbose_name="库存", decimal_places=4, max_digits=10)
     unit = models.CharField(max_length=6, verbose_name="单位")
     image = models.ImageField(verbose_name="图标")
-    order = models.ImageField(verbose_name="排序数")
+    order = models.IntegerField(verbose_name="排序数", default=0)
 
     def __str__(self):
         return self.name
