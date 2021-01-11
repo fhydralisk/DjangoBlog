@@ -101,11 +101,13 @@ class GuildMaterialsJournal(models.Model):
 
             if self.material_input:
                 assert self.amount_input is not None
+                self.material_input.refresh_from_db()
                 self.material_input.stock += self.amount_input
                 self.material_input.save()
 
             if self.material_output:
                 assert self.amount_output is not None
+                self.material_output.refresh_from_db()
                 self.material_output.stock -= self.amount_output
                 self.material_output.save()
 
