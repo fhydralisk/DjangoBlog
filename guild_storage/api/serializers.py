@@ -11,7 +11,7 @@ class StockListSerializer(serializers.ReadonlySerializer):
     stocks = GuildMaterialsStockSerializer(many=True)
 
 
-class JournalListApiSerializer(serializers.PagedListSerializerMixin):
+class JournalListApiSerializer(serializers.PageApiSerializer):
     material = serializers.PrimaryKeyRelatedField(
         queryset=GuildMaterialsStock.objects.all(),
         allow_null=True,
@@ -19,5 +19,5 @@ class JournalListApiSerializer(serializers.PagedListSerializerMixin):
     )
 
 
-class JournalListSerializer(serializers.ReadonlySerializer):
+class JournalListSerializer(serializers.PagedListSerializerMixin):
     journals = GuildMaterialsJournalWithNameSerializer(many=True)
