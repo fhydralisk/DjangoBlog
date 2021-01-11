@@ -12,7 +12,11 @@ class StockListSerializer(serializers.ReadonlySerializer):
 
 
 class JournalListApiSerializer(serializers.PagedListSerializerMixin):
-    material = serializers.PrimaryKeyRelatedField(queryset=GuildMaterialsStock.objects.all(), allow_null=True)
+    material = serializers.PrimaryKeyRelatedField(
+        queryset=GuildMaterialsStock.objects.all(),
+        allow_null=True,
+        default=None
+    )
 
 
 class JournalListSerializer(serializers.ReadonlySerializer):
