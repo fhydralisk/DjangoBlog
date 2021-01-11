@@ -8,7 +8,7 @@ class GuildMaterialStockAdmin(admin.ModelAdmin):
     readonly_fields = ('stock', 'unit')
 
     def get_readonly_fields(self, request, obj=None):
-        if obj:
+        if obj and not request.user.is_superuser:
             return self.readonly_fields
         else:
             return ()
