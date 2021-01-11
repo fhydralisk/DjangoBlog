@@ -21,6 +21,8 @@ class GuildMaterialsStockSerializer(serializers.DynamicFieldsMixin, serializers.
 
 class GuildMaterialsJournalSerializer(serializers.DynamicFieldsMixin, serializers.ModelSerializer):
 
+    operate_date = serializers.TimestampField()
+
     class Meta:
         model = GuildMaterialsJournal
         fields = (
@@ -37,11 +39,5 @@ class GuildMaterialsJournalSerializer(serializers.DynamicFieldsMixin, serializer
 
 class GuildMaterialsJournalWithNameSerializer(GuildMaterialsJournalSerializer):
 
-    material_input_name = serializers.ReadOnlyField(source='material_input.name')
-    material_output_name = serializers.ReadOnlyField(source='material_output.name')
-
-    class Meta(GuildMaterialsJournalSerializer.Meta):
-        fields = GuildMaterialsJournalSerializer.Meta.fields + (
-            'material_input_name',
-            'material_output_name',
-        )
+    material_input = GuildMaterialsStockSerializer()
+    material_output = GuildMaterialsStockSerializer()
