@@ -27,7 +27,7 @@ class GuildMaterialsJournal(models.Model):
     material_input = models.ForeignKey(
         to=GuildMaterialsStock,
         related_name="log_input",
-        verbose_name="涉及物资",
+        verbose_name="输入物资",
         on_delete=models.CASCADE,
         null=True,
         blank=True,
@@ -42,7 +42,7 @@ class GuildMaterialsJournal(models.Model):
     material_output = models.ForeignKey(
         to=GuildMaterialsStock,
         related_name="log_output",
-        verbose_name="涉及物资",
+        verbose_name="输出物资",
         on_delete=models.CASCADE,
         null=True,
     )
