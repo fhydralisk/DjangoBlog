@@ -26,6 +26,8 @@ from servermanager.admin import *
 from comments.admin import *
 from owntracks.admin import *
 from milhous_status.admin import *
+from guild_storage.models import *
+from guild_storage.admin import *
 
 
 class DjangoBlogAdminSite(AdminSite):
@@ -77,3 +79,6 @@ admin_site.register(LogEntry, LogEntryAdmin)
 admin_site.register([MilhousCharacter, MilhousHost, HostMachineType])
 
 admin_site.register([AliSmsAPIMasterKey])
+
+admin_site.register(GuildMaterialsStock, GuildMaterialStockAdmin)
+admin_site.register(GuildMaterialsJournal, GuildMaterialJournalAdmin)
