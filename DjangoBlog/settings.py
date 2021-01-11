@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'base',
     'milhous_status',
+    'guild_storage',
 ]
 
 MIDDLEWARE = [
