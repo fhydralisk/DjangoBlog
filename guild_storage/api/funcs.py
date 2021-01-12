@@ -10,7 +10,7 @@ class StockListFunc(AbstractFuncClass):
 
     def run(self, request, user, serializer, **kwargs):
         return {
-            "stocks": GuildMaterialsStock.objects.all()
+            "stocks": GuildMaterialsStock.objects.filter(Q(stock__gt=0) | Q(force_display=True))
         }
 
 

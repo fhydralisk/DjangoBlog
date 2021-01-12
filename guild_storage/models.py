@@ -9,6 +9,7 @@ class GuildMaterialsStock(models.Model):
     unit = models.CharField(max_length=6, verbose_name="单位")
     image = models.ImageField(verbose_name="图标")
     order = models.IntegerField(verbose_name="排序数", default=0)
+    force_display = models.BooleanField(default=False, verbose_name="强制显示（数量为0时依然显示）")
 
     def __str__(self):
         return self.name
