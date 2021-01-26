@@ -19,6 +19,8 @@ class GuildMaterialJournalAdmin(admin.ModelAdmin):
         'material_input', 'amount_input', 'input_from', 'material_output', 'amount_output', 'output_to', 'comment'
     )
 
+    list_filter = ['material_input__name', 'material_output__name', 'input_from', 'output_to']
+
     def delete_queryset(self, request, queryset):
         # delete it one by one, to trigger model's delete method.
         for obj in queryset:
