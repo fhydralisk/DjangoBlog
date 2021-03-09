@@ -29,8 +29,6 @@ def report_host_state():
 
     for host in state_changed:  # FIXME
         sms_manager[sms_choice.HOST_STATE].send_sms('18513958704', {
-            'server_type': host.name,
-            'date_start': datetime.datetime.now().strftime('%m-%d %H:%M'),
-            'date_end': datetime.datetime.now().strftime('%m-%d %H:%M'),
-            'count': 1,
+            'name': host.name,
+            'date': datetime.datetime.now().strftime('%m-%d %H:%M'),
         })
